@@ -4,6 +4,8 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import IngresoCITT from '../components/IngresoCITT';
+
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
