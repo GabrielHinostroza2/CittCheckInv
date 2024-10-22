@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 // Definir un tipo para el estado
 type UserData = {
@@ -30,15 +30,22 @@ const IngresoCITT = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Ingreso a Sala CITT</Text>
-      <Text style={styles.label}>Nombre: {userData.nombre}</Text>
-      <Text style={styles.label}>Rol: {userData.rol}</Text>
-      {userData.rol === 'Estudiante' && userData.carrera ? (
-        <Text style={styles.label}>Carrera: {userData.carrera}</Text>
-      ) : null}
-      <Text style={styles.label}>Hora de Ingreso: {userData.horaIngreso}</Text>
+      {/* Agregar la imagen con el nuevo nombre */}
+      <Image source={require('@/assets/images/logo_citt.png')} style={styles.logo} />
 
-      <Button title="Cambiar Usuario" onPress={actualizarDatos} />
+      <Text style={styles.header}>Ingreso a Sala CITT</Text>
+      <View style={styles.infoContainer}>
+        <Text style={styles.label}>Nombre: {userData.nombre}</Text>
+        <Text style={styles.label}>Rol: {userData.rol}</Text>
+        {userData.rol === 'Estudiante' && userData.carrera ? (
+          <Text style={styles.label}>Carrera: {userData.carrera}</Text>
+        ) : null}
+        <Text style={styles.label}>Hora de Ingreso: {userData.horaIngreso}</Text>
+      </View>
+
+      <TouchableOpacity style={styles.button} onPress={actualizarDatos}>
+        <Text style={styles.buttonText}>Cambiar Usuario</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -48,16 +55,51 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#e0f7fa',
+    padding: 20,
+  },
+  logo: {
+    width: 290,
+    height: 100,
+    marginBottom: 40,
   },
   header: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
+    color: '#00796b',
+    marginBottom: 20,
+  },
+  infoContainer: {
+    width: '90%',
+    backgroundColor: '#ffffff',
+    padding: 15,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
     marginBottom: 20,
   },
   label: {
     fontSize: 18,
-    marginBottom: 10,
+    color: '#333',
+    marginBottom: 8,
+  },
+  button: {
+    backgroundColor: '#00796b',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+    width: '90%',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
