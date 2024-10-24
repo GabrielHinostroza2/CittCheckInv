@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Button, TextInput, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 // Definir el tipo Product
 type Product = {
@@ -48,7 +48,9 @@ const Inventario = () => {
         renderItem={({ item }) => (
           <View style={styles.productItem}>
             <Text style={styles.productName}>{item.name}</Text>
-            <Button title="Ver detalles" onPress={() => handleProductSelect(item)} />
+            <TouchableOpacity style={styles.detailsButton} onPress={() => handleProductSelect(item)}>
+              <Text style={styles.detailsButtonText}>Ver detalles</Text>
+            </TouchableOpacity>
           </View>
         )}
       />
@@ -64,7 +66,9 @@ const Inventario = () => {
             keyboardType="numeric"
             style={styles.input}
           />
-          <Button title="Usar producto" onPress={handleUseProduct} />
+          <TouchableOpacity style={styles.useProductButton} onPress={handleUseProduct}>
+            <Text style={styles.useProductButtonText}>Usar producto</Text>
+          </TouchableOpacity>
         </View>
       )}
     </View>
@@ -75,12 +79,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#e0f7fa', // Fondo similar al que usaste en IngresoCITT
   },
   header: {
     fontSize: 24,
     marginBottom: 20,
     fontWeight: 'bold',
+    color: '#00796b', // Color principal usado para el header
+    textAlign: 'center',
   },
   productItem: {
     padding: 16,
@@ -90,18 +96,49 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 18,
   },
+  detailsButton: {
+    backgroundColor: '#00796b', // Mismo color para el botón de "Ver detalles"
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  detailsButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+  },
   details: {
     marginTop: 20,
+    padding: 20,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   productDetailHeader: {
     fontSize: 20,
     marginBottom: 10,
+    color: '#00796b',
   },
   input: {
     borderColor: '#ccc',
     borderWidth: 1,
     padding: 8,
     marginBottom: 10,
+    borderRadius: 5,
+  },
+  useProductButton: {
+    backgroundColor: '#d32f2f', // Color diferente para el botón "Usar producto"
+    padding: 12,
+    borderRadius: 5,
+  },
+  useProductButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
